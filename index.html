@@ -1,13 +1,609 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>OSDepotPlus</title>
-</head>
-<body>
-    <h1>OSDepotPlus</h1>
-    <p>Operating systems, software, files and community.</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h2>Welcome to OSDepotPlus</h2>
-    <p>A place for OS enthusiasts, software, and computer-related stuff.</p>
+    <title>OSDepotPlus</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #111820;
+            border-bottom: 1px solid #263241;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #4da3ff;
+        }
+
+        nav {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 9px 13px;
+            border-radius: 6px;
+            color: #aeb9c6;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            background: #1b2530;
+            color: white;
+        }
+
+        .search {
+            background: #0b1015;
+            border: 1px solid #2a3745;
+            border-radius: 7px;
+            padding: 9px 12px;
+            color: white;
+            outline: none;
+            width: 190px;
+        }
+
+        /* HERO */
+
+        .hero {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 22px 45px;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, #172333, #10171f);
+            border: 1px solid #29384a;
+            border-radius: 12px;
+            padding: 45px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #4da3ff;
+        }
+
+        .hero p {
+            color: #aab7c5;
+            font-size: 17px;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            background: #2388ff;
+            padding: 12px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .button:hover {
+            background: #3c9aff;
+        }
+
+        .button.secondary {
+            background: #1c2733;
+            border: 1px solid #334354;
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 22px 60px;
+        }
+
+        .section {
+            margin-top: 38px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+        }
+
+        .section-header a {
+            color: #4da3ff;
+            font-size: 14px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: #111820;
+            border: 1px solid #263241;
+            border-radius: 9px;
+            padding: 20px;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #3b8fd9;
+        }
+
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 7px;
+            font-size: 18px;
+        }
+
+        .card p {
+            color: #91a0ae;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 13px;
+            padding: 4px 8px;
+            border-radius: 5px;
+            background: #182534;
+            color: #70b7ff;
+            font-size: 12px;
+        }
+
+        /* TWO COLUMNS */
+
+        .columns {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 18px;
+        }
+
+        .panel {
+            background: #111820;
+            border: 1px solid #263241;
+            border-radius: 9px;
+            overflow: hidden;
+        }
+
+        .panel-title {
+            padding: 15px 18px;
+            border-bottom: 1px solid #263241;
+            font-weight: bold;
+        }
+
+        .list-item {
+            padding: 16px 18px;
+            border-bottom: 1px solid #202b36;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item:hover {
+            background: #151e27;
+        }
+
+        .list-main strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .list-main span {
+            color: #7f8c99;
+            font-size: 12px;
+        }
+
+        .list-meta {
+            color: #71808e;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        /* STATUS */
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #9eabb7;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #31d158;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #263241;
+            background: #0a0e13;
+            margin-top: 30px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 22px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer p {
+            color: #687582;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #7fa9d1;
+            margin-left: 15px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .search {
+                width: 100%;
+            }
+
+            .hero {
+                padding-top: 30px;
+            }
+
+            .hero-box {
+                padding: 30px 23px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a href="#" class="logo">
+            OSDepot<span>Plus</span>
+        </a>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">ISOs</a>
+            <a href="#">Software</a>
+            <a href="#">Apps</a>
+            <a href="#">Forums</a>
+        </nav>
+
+        <input
+            class="search"
+            type="search"
+            placeholder="Search OSDepotPlus..."
+        >
+
+    </div>
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-box">
+
+        <h1>Welcome to <span>OSDepotPlus</span></h1>
+
+        <p>
+            A community for operating systems, software, applications,
+            computer files and everything around them.
+        </p>
+
+        <div class="buttons">
+            <a class="button" href="#">Browse ISOs</a>
+            <a class="button secondary" href="#">Visit Forums</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<main>
+
+    <!-- CATEGORIES -->
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Explore OSDepotPlus</h2>
+        </div>
+
+        <div class="cards">
+
+            <a class="card" href="#">
+                <div class="card-icon">💿</div>
+                <h3>ISO Library</h3>
+                <p>
+                    Browse operating system images and other disk images
+                    shared by the community.
+                </p>
+                <span class="tag">ISOs</span>
+            </a>
+
+            <a class="card" href="#">
+                <div class="card-icon">📦</div>
+                <h3>Software</h3>
+                <p>
+                    Find useful programs, utilities, tools and older
+                    software.
+                </p>
+                <span class="tag">Software</span>
+            </a>
+
+            <a class="card" href="#">
+                <div class="card-icon">🛠️</div>
+                <h3>Applications</h3>
+                <p>
+                    Discover applications released by OSDepotPlus and
+                    community developers.
+                </p>
+                <span class="tag">Apps</span>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- LATEST -->
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Latest Releases</h2>
+            <a href="#">View all →</a>
+        </div>
+
+        <div class="columns">
+
+            <div class="panel">
+
+                <div class="panel-title">
+                    Latest files
+                </div>
+
+                <a class="list-item" href="#">
+                    <div class="list-main">
+                        <strong>OSDepotPlus Test Release</strong>
+                        <span>Uploaded just now</span>
+                    </div>
+
+                    <div class="list-meta">
+                        Coming soon
+                    </div>
+                </a>
+
+                <a class="list-item" href="#">
+                    <div class="list-main">
+                        <strong>Community uploads</strong>
+                        <span>Files shared by members</span>
+                    </div>
+
+                    <div class="list-meta">
+                        Coming soon
+                    </div>
+                </a>
+
+                <a class="list-item" href="#">
+                    <div class="list-main">
+                        <strong>Software releases</strong>
+                        <span>Programs and utilities</span>
+                    </div>
+
+                    <div class="list-meta">
+                        Coming soon
+                    </div>
+                </a>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-title">
+                    Website status
+                </div>
+
+                <div class="list-item">
+
+                    <div class="status">
+                        <div class="status-dot"></div>
+                        Website online
+                    </div>
+
+                </div>
+
+                <div class="list-item">
+
+                    <div class="list-main">
+                        <strong>Version</strong>
+                        <span>OSDepotPlus</span>
+                    </div>
+
+                    <div class="list-meta">
+                        v0.1
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FORUM -->
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Community Forums</h2>
+            <a href="#">Open forums →</a>
+        </div>
+
+        <div class="panel">
+
+            <a class="list-item" href="#">
+                <div class="list-main">
+                    <strong>Welcome to OSDepotPlus</strong>
+                    <span>General discussion</span>
+                </div>
+
+                <div class="list-meta">
+                    0 replies
+                </div>
+            </a>
+
+            <a class="list-item" href="#">
+                <div class="list-main">
+                    <strong>Operating Systems</strong>
+                    <span>Windows, Linux and other OS discussions</span>
+                </div>
+
+                <div class="list-meta">
+                    0 posts
+                </div>
+            </a>
+
+            <a class="list-item" href="#">
+                <div class="list-main">
+                    <strong>Software & Apps</strong>
+                    <span>Talk about programs and applications</span>
+                </div>
+
+                <div class="list-meta">
+                    0 posts
+                </div>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-inner">
+
+        <p>
+            © 2026 OSDepotPlus
+        </p>
+
+        <div>
+            <a href="#">About</a>
+            <a href="#">Rules</a>
+            <a href="#">Contact</a>
+        </div>
+
+    </div>
+
+</footer>
+
 </body>
 </html>
+```
